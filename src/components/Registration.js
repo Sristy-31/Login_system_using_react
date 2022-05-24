@@ -1,22 +1,12 @@
 import React, {Component} from "react";
 import pic from '../assets/undraw_remotely_2j6y.svg';
+import {Link} from 'react-router-dom';
 
-class Auth extends Component {
+class Registration extends Component {
 
-    login(e){
+    registration(e){
         e.preventDefault();
-        console.warn("state", this.state);
-        fetch('http://127.0.0.1:8000/api/login', {
-            method:"POST",
-            headers:{
-                "Accept":"application/json",
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify(this.state)
-        }).then((result) => {
-            result.json().then((resp)=>{console.log(resp)}
-        )
-        })
+        console.log("state", this.state);
     }
 
     render(){
@@ -30,13 +20,21 @@ class Auth extends Component {
                         <div className="row justify-content-center">
                             <div className="col-md-8">
                             <div className="mb-4">
-                            <h3>Sign In</h3>
+                            <h3>Sign Up</h3>
                             </div>
                             <form>
                             <div className="form-group first">
+                                <label>Email</label>
+                                <input type="email"
+                                onChange={(e)=>{this.setState({email:e.target.value})}}
+                                className="form-control"
+                                id="email"/>
+
+                            </div>
+                            <div className="form-group first">
                                 <label>Username</label>
                                 <input type="text"
-                                onChange={(e)=>{this.setState({email:e.target.value})}}
+                                onChange={(e)=>{this.setState({username:e.target.value})}}
                                 className="form-control"
                                 id="username"/>
 
@@ -48,13 +46,16 @@ class Auth extends Component {
                                  className="form-control"
                                   id="password" />
                             </div>
-                            <div className="d-flex mb-5 align-items-center">
-                                <span className="ml-auto"><a href="#" className="forgot-pass">Forgot Password</a></span>
-                            </div>
+                        
                             <input type="submit"
-                            value="Log In" 
-                             onClick={(e)=>this.login(e)}
+                            value="Register"
+                             onClick={(e)=>this.registration(e)}
                               className="btn btn-block btn-primary" />
+
+                              <br />
+                                <Link to="/">
+                                Already have an account ? Sign in here 
+                                </Link>
                             </form>
                             </div>
                         </div>
@@ -65,5 +66,5 @@ class Auth extends Component {
     }
 }
 
-export default Auth;
+export default Registration;
 

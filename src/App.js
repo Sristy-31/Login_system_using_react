@@ -1,13 +1,19 @@
 import React from "react";
-import Auth from './components/Auth';
+import Registration from './components/Registration';
+import Login from './components/Login';
+import { BrowserRouter as Router ,Route, Routes, Navigate, Link} from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-           <div className="container app_container">
-           <Auth />
-           </div>
-    </div>
+    <Router>
+      <div className="App">
+       <Routes>
+         <Route exact path = "/" element={<Login/>}></Route>
+         <Route path = "/register" element={<Registration/>}></Route>
+       </Routes>
+       </div>
+   </Router>
   );
 }
 
